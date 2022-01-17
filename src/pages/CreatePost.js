@@ -30,9 +30,6 @@ const CreatePost = ({isAuth}) => {
           <label> Title:</label>
           <input
             placeholder="Title..."
-            // onChange={(event) => {
-            //   setTitle(event.target.value);
-            // }}
             onChange={(event)=>{
               setTitle(event.target.value)
             }}
