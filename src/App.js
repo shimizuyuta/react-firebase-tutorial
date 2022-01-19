@@ -4,6 +4,7 @@ import "./App.css";
 // import {BrowerRouter as Router,Routes,Route,Link} from 'react-router-dom'
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from "./pages/Signup";
 import CreatePost from './pages/CreatePost';
 import { auth } from "./firebase-config";
 import { signOut } from "firebase/auth";
@@ -23,7 +24,10 @@ function App() {
       <nav>
         <Link to="/">Home</Link>
         {!isAuth?(
-        <Link to="/login">login</Link>
+        <>
+          <Link to="/login">login</Link>
+          <Link to="/signup">user register</Link>
+        </>
         ):(
         <>
         <Link to="/createpost">create post</Link>
@@ -33,6 +37,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth}/>}/>
+        <Route path="/signup" element={<Signup isAuth={isAuth}/>}/>
         <Route path="/login" element={<Login setIsAuth={setIsAuth}/>}/>
         <Route path="/createpost" element={<CreatePost isAuth={isAuth}/>}/>
       </Routes>
