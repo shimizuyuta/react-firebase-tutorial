@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import './LoginWithEmailPassword.css'
 
-const LoginWithEmailPassword = ({setIsAuth}) => {
+const LoginWithEmailPassword = () => {
   const auth = getAuth();
   let navigate = useNavigate();
   const emailRef = useRef();
@@ -15,9 +15,8 @@ const LoginWithEmailPassword = ({setIsAuth}) => {
     signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
     .then((userCredential) => {
       // Signed in
-      console.log('fafa')
       const user = userCredential.user;
-      setIsAuth(true)
+      console.log('fafa',user)
       navigate('/')
     })
     .catch((error) => {

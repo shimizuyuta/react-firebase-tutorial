@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {getAuth,GoogleAuthProvider,signInWithPopup} from 'firebase/auth';
 
 
-const LoginWithGoogle = ({ setIsAuth }) => {
+const LoginWithGoogle = () => {
   let navigate = useNavigate();
   const auth = getAuth();
 
@@ -16,7 +16,6 @@ const LoginWithGoogle = ({ setIsAuth }) => {
       // The signed-in user info.
       const user = result.user;
       console.log('user info',user)
-      setIsAuth(true)
       navigate('/')
 
     }).catch((error)=>{

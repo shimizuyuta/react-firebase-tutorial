@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate  } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 // import {BrowerRouter as Router,Routes,Route,Link} from 'react-router-dom'
@@ -8,15 +8,14 @@ import Signup from "./pages/Signup";
 import CreatePost from './pages/CreatePost';
 import { auth } from "./firebase-config";
 import { signOut } from "firebase/auth";
+import { useAuthContext }from './context/AuthContext'
 
 function App() {
-  const [isAuth,setIsAuth] = useState(localStorage.getItem('isAuth'));
-  const signUserOut = () =>{
-    signOut(auth).then(()=>{
-      localStorage.clear()
-      setIsAuth(false);
-      window.location.pathname = "/login";
-    })
+  const { user,loading,isAuth} = useAuthContext()
+
+  const signUserOut = ()=>{
+    auth.signOut();
+    window.location.pathname = "/login";
   }
 
   return (
@@ -38,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth}/>}/>
         <Route path="/signup" element={<Signup isAuth={isAuth}/>}/>
-        <Route path="/login" element={<Login setIsAuth={setIsAuth}/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/createpost" element={<CreatePost isAuth={isAuth}/>}/>
       </Routes>
     </Router>
