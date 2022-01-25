@@ -16,7 +16,6 @@ const LoginWithEmailPassword = () => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log('fafa',user)
       navigate('/')
     })
     .catch((error) => {

@@ -1,8 +1,11 @@
 import { collection, getDocs,doc, deleteDoc } from 'firebase/firestore'
 import React,{useEffect,useState} from 'react'
+import { useAuthContext } from '../context/AuthContext'
 import { db ,auth} from '../firebase-config'
+import { useContext } from 'react'
 
-const Home = ({isAuth}) => {
+const Home = () => {
+  const isAuth = useContext(useAuthContext)
   const [postList, setPostList] = useState([])
   const postsCollectionRef = collection(db,'posts')
 
